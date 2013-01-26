@@ -14,15 +14,13 @@
 //= require jquery_ujs
 //= require foundation
 //= require underscore
-/*
- * //= require backbone
- * //= require backbone_rails_sync
- * //= require backbone_datalink
- * //= require gtvc
- * //= require_tree backbone/models
- * //= require_tree backbone/collections
- * //= require_tree backbone/templates
- * //= require_tree backbone/views
- * //= require_tree backbone/routers
-*/
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require gtvc
+//= require_tree ./backbone/models
+//= require_tree ./backbone/collections
+//= require_tree ./backbone/templates
+//= require_tree ./backbone/views
+//= require_tree ./backbone/routers
 

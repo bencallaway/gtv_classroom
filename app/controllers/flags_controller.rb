@@ -1,4 +1,4 @@
-class FlagsController < ActionController::Base
+class FlagsController < ApplicationController
 	def index
 
 	end

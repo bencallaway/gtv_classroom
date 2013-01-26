@@ -1,4 +1,5 @@
 Gtvclass::Application.routes.draw do
+  resources :lessons
   resources :flags
-  root :to => 'flags#index'
+  root :to => 'lessons#show'
 end
