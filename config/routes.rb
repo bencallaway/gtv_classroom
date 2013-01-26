@@ -1,3 +1,4 @@
 Gtvclass::Application.routes.draw do
-  root :to => 'home#index'
+  resources :flags
+  root :to => 'flags#index'
 end
