@@ -1,5 +1,6 @@
 class FlagsController < ApplicationController
 	def index
+    @count = Flag.count
 	end
 
   def new
