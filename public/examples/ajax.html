@@ -136,10 +136,18 @@
 
 .tv-button.tv-component-focused .ajax-thumbnail {
    -webkit-box-shadow: 0 0 10px #29abe2;
-  border: 5px solid #29abe2;
+  border-top: 5px solid #29abe2;
   -webkit-transition: border 200ms ease;
 }
 
+
+.tv-button img{
+  opacity: .66;
+}
+.tv-button.tv-component-focused img{
+  opacity: 1 !important;
+  -webkit-transition: opacity 200ms ease;
+}
 .ajax-title {
   margin: 0 5px;
   overflow: hidden;
@@ -161,7 +169,10 @@ span.blue{ background: #29abe2!important;}
 
 
 .tv-container-middle-scroll2{
-  margin-top: 4em;
+  margin-top: 10%;
+  padding-bottom: 3%;
+  border-top: 1px dashed #575757;
+
 }
 .selected-lesson .ajax-thumbnail{
   height: 75px;
