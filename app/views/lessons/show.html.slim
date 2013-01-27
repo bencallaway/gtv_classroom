@@ -1,21 +1,39 @@
 coffee:
-  ids = ['u1zgFlCw8Aw', 'kpCJyQ2usJ4', 'HbZjmGQ3Ji8', 'FLGRPYAtReo', 'RSD8PMWS-U8', '71NUxTfGaW8', 'PMeiNnR8gro', 'ZffZvSH285c', '0ciUwIMPDqY']
-  videos = new gtvc.collections.Videos
-  jqxhr = videos.fetch
-    dataType: 'jsonp'
-    data:
-      key: 'AIzaSyBg7WwJVUSL_x-JGkEVMu33wGH1U7CEEGs'
-      id: ids.join()
-      part: 'snippet'
-  jqxhr.done (response) =>
-    player = new gtvc.views.Player
-      context: window
-      videoId: videos.first().id
-    carousel = new gtvc.views.Carousel
-      collection: videos
-      itemView: gtvc.views.Thumbnail
-    lesson = new gtvc.views.Lesson
-      el: 'body'
-      player: player
-      carousel: carousel
-    lesson.render()
+
+  tag = document.createElement 'script'
+  tag.src = '//www.youtube.com/iframe_api'
+  firstScriptTag = document.getElementsByTagName('script')[0]
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+
+  window.onYouTubeIframeAPIReady = =>
+    ids = ['u1zgFlCw8Aw', 'kpCJyQ2usJ4', 'HbZjmGQ3Ji8', 'FLGRPYAtReo', 'RSD8PMWS-U8', '71NUxTfGaW8', 'PMeiNnR8gro', 'ZffZvSH285c', '0ciUwIMPDqY']
+    videos = new gtvc.collections.Videos
+    jqxhr = videos.fetch
+      dataType: 'jsonp'
+      data:
+        key: 'AIzaSyBg7WwJVUSL_x-JGkEVMu33wGH1U7CEEGs'
+        id: ids.join()
+        part: 'snippet'
+    jqxhr.done (response) =>
+      modal = new gtvc.views.Modal
+      carousel = new gtvc.views.Carousel
+        collection: videos
+        itemView: gtvc.views.Thumbnail
+      player = new gtvc.views.Player
+        context: window
+        model: videos.first()
+        onPlayerStateChange: (event) =>
+          switch event.data
+            when YT.PlayerState.PLAYING, YT.PlayerState.BUFFERING
+              carousel.$el.hide()
+              modal.$el.hide()
+            when YT.PlayerState.ENDED
+              modal.$el.show()
+            else
+              modal.$el.hide()
+              carousel.$el.show()
+      lesson = new gtvc.views.Lesson
+        el: 'body'
+        player: player
+        carousel: carousel
+      lesson.render()

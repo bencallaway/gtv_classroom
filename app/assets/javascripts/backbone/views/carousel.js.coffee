@@ -32,3 +32,6 @@ class gtvc.views.Carousel extends Backbone.View
     index = if @selected != 0 then @selected - 1 else @selected
     @select index
 
+  selectedVideo: ->
+    @slides[@selected].model
+

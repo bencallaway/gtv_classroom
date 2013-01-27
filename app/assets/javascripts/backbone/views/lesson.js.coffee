@@ -20,10 +20,9 @@ class gtvc.views.Lesson extends Backbone.View
       when 37, 177 then alert('Left')
       # Right, Next
       when 39, 176 then alert('Right')
-      # Enter
-      when 13 then alert('Enter')
-      # Play/Pause
-      when 179 then alert('Play/Pause')
+      # Enter, Play/Pause
+      when 13, 179
+        @player.play @carousel.selectedVideo()
       # Stop
       when 178 then alert('Stop')
 

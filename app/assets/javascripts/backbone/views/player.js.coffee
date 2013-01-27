@@ -3,20 +3,21 @@ class gtvc.views.Player extends Backbone.View
   initialize: ->
     @$el.attr('id', 'player') unless @el.id
     @context = @options.context
+    @_deferred = $.Deferred()
+    @load = @_deferred.promise()
 
   render: ->
-    tag = document.createElement 'script'
-    tag.src = '//www.youtube.com/iframe_api'
-    firstScriptTag = document.getElementsByTagName('script')[0]
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-    @context.onYouTubeIframeAPIReady = =>
-      new YT.Player @el.id,
-        height: '390'
-        width: '640'
-        videoId: @el.id
-        events:
-          onReady: @onPlayerReady
+    @ytPlayer = new YT.Player @el,
+      playerVars:
+        controls: 0
+      events:
+        onReady: @onPlayerReady
+        onStateChange: @options.onPlayerStateChange
 
-   onPlayerReady: (event) ->
-     event.target.playVideo()
+   onPlayerReady: (event) =>
+     @_deferred.resolve()
+
+  play: (video) ->
+    @load.done =>
+      @ytPlayer.loadVideoById video.id
 
