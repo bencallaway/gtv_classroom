@@ -10,7 +10,7 @@ class gtvc.views.Modal extends Backbone.View
     @answers = @options.answers
 
   render: ->
-    @flagCount.html "Requests for review: #{@flags.length}"
+    @flagCount.html "#{@flags.length} requested a review." 
     red = @answers.where value: 'red'
     yellow = @answers.where value: 'yellow'
     blue = @answers.where value: 'blue'

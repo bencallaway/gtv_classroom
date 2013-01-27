@@ -226,3 +226,32 @@ span.color{ padding:2px 10px ;
 	background: #222;
 	color: white;
 }
+
+
+.modal{
+	text-align: center;
+	padding-top:2em;
+	h2{
+		padding-bottom:.5em;
+		font-size: 6em;
+	}
+	li:nth-child(1){background: #993f3e;}
+	li:nth-child(2) {background:$yellow;}
+	li:nth-child(3){ background:$blue;}
+	li:nth-child(4){background: $green;}
+	li{
+
+		text-align: center;
+		width:25% !important;
+		font-size: 10em;
+		display: inline-block;
+	}
+	h2:first-letter{
+		background:black;
+		color:white;
+		padding-left:.4em;
+		padding-right:.4em;
+	}
+}
+
+

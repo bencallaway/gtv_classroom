@@ -2,26 +2,48 @@
 
 <div class="student-flag">
 	<h2 class="subheader">This video received</h2>
-	<h1 id="student-flag"> <%= @count %></h1> 
+	<h1 id="student-flag"></h1> 
 	<h2 class="subheader">requests for review.</h2>
 </div>
 
 <div class="student-poll">
-  <h2 class="subheader redd" id="student-flag"><%= @red_count %></h2> 
-  <h2 class="subheader green" id="student-flag"><%= @green_count %></h2> 
-  <h2 class="subheader blue" id="student-flag"><%= @blue_count %></h2> 
-  <h2 class="subheader yellow" id="student-flag"><%= @yellow_count %></h2>
+  <h2 class="subheader redd" id="student-poll-r"><%= @red_count %></h2> 
+  <h2 class="subheader green" id="student-poll-g"><%= @green_count %></h2> 
+  <h2 class="subheader blue" id="student-poll-b"><%= @blue_count %></h2> 
+  <h2 class="subheader yellow" id="student-poll-y"><%= @yellow_count %></h2>
 </div>
 
 <script type="text/javascript">
-	
-    window.onload = setupRefresh;
 
-    function setupRefresh() {
-      setTimeout("refreshPage();", 1000); // milliseconds
-    }
-    function refreshPage() {
-       window.location = location.href;
-    }
+    window.onload = updateFlag;
 
+    function updateFlag() {
+      $.getJSON('/answers', function(data) {
+        var red_count = 0;
+        var blue_count = 0;
+        var green_count = 0;
+        var yellow_count = 0;
+        for (var i = 0; i < data.length; i++) {
+          if (data[i]['value'] == 'red') {
+            red_count++;
+          }
+          else if (data[i]['value'] == 'blue') {
+            blue_count++;
+          }
+          else if (data[i]['value'] == 'green') {
+            green_count++;
+          }
+          else if (data[i]['value'] == 'yellow') {
+            yellow_count++;
+          }
+        }
+        $('#student-flag').html(data.length);
+        $('#student-poll-r').html(red_count);
+        $('#student-poll-b').html(blue_count);
+        $('#student-poll-g').html(green_count);
+        $('#student-poll-y').html(yellow_count);
+      });
+
+      setTimeout("updateFlag();", 1000); // milliseconds
+    }
 </script>
