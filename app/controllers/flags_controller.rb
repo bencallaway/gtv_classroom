@@ -1,6 +1,9 @@
 class FlagsController < ApplicationController
 	def index
-    @count = Flag.count
+    respond_to do |format|
+      format.json { render json: Flag.all }
+      format.html { @count = Flag.count }
+    end
 	end
 
   def new
@@ -9,7 +12,6 @@ class FlagsController < ApplicationController
 
   def create
     Flag.create
-
     redirect_to :action => :new
   end
 
