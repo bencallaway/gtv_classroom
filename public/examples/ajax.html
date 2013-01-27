@@ -44,7 +44,9 @@
   white-space: nowrap;
 
 }
-
+.ajax-previews .video-id, .video-id2 {
+  display: none;
+}
 .ajax-previews2 .tv-container-middle-scroll2 {
   -webkit-transition: left 200ms ease;
 }
@@ -245,29 +247,19 @@ span.blue{ background: #29abe2!important;}
         <div class="tv-container-middle-scroll2"><h4 class="subheader">Lesson Plan</h4></div>
       </div>
     </div>
-  </div>
-  <div style="display: inline;
-bottom: 0%;
-text-align: center;
-padding-top:.7em;
-height: 2.5em;" class="bottom-fixed">
-    <span style="margin-right:.5em;" class="color red"></span>
-<h3 style="font-size: .7em;display:inline; margin-right:2em;"class="subheader"> Remove</h3>
-
-
-    <span style="margin-right:.5em;" class="color green"></span>
-<h3 style="font-size: .7em;display:inline; margin-right:2em;"class="subheader"> Search</h3>
-
-
-    <span style="margin-right:.5em;" class="color yellow"></span>
-<h3 style="font-size: .7em;display:inline; margin-right:2em;"class="subheader"> Add to Playlist</h3>
-
-
-    <span style="margin-right:.5em;" class="color blue"></span>
-<h3 style="font-size: .7em;display:inline; margin-right:2em;"class="subheader"> Presentation Mode</h3>
-
-
-</div>
+ <div class="bottom-fixed" 
+      style="display: inline; bottom: 0%; text-align: center; padding-top:.7em; height: 2.5em;" >
+      <span style="margin-right:.5em;" class="color red"></span>
+        <h3 style="font-size: .7em;display:inline; margin-right:2em;"class="subheader tv-button remove-button"> Remove</h3>
+      <span style="margin-right:.5em;" class="color green"></span>
+        <h3 style="font-size: .7em;display:inline; margin-right:2em;"class="subheader tv-button search-button"> Search</h3>
+      <span style="margin-right:.5em;" class="color yellow"></span>
+        <h3 style="font-size: .7em;display:inline; margin-right:2em;"class="subheader tv-button add-button"> Add to Playlist</h3>
+      <span style="margin-right:.5em;" class="color blue"></span>
+        <h3 style="font-size: .7em;display:inline; margin-right:2em;"class="subheader tv-button presentation-button"> Presentation Mode</h3>
+    </div>
+   </div>
+ 
 
 </div>
 
@@ -277,6 +269,44 @@ height: 2.5em;" class="bottom-fixed">
 var decorateHandler = new tv.ui.DecorateHandler();
 decorateHandler.addClassHandler('ajax-query', onQueryDecorate);
 decorateHandler.addClassHandler('ajax-previews', onPreviewsDecorate);
+
+
+decorateHandler.addClassHandler('remove-button', function(button) {
+  goog.events.listen(button, tv.ui.Button.EventType.ACTION,
+      function() {
+        alert('Remove Button clicked.');
+      });
+});
+
+decorateHandler.addClassHandler('search-button', function(button) {
+  goog.events.listen(button, tv.ui.Button.EventType.ACTION,
+      function() {
+        alert('Search Button clicked.');
+      });
+});
+
+decorateHandler.addClassHandler('add-button', function(button) {
+  goog.events.listen(button, tv.ui.Button.EventType.ACTION,
+      function() {
+        alert('AddToPlaylist Button clicked.');
+      });
+});
+
+decorateHandler.addClassHandler('presentation-button', function(button) {
+  goog.events.listen(button, tv.ui.Button.EventType.ACTION,
+      function() {
+        var videoIds = goog.dom.getElementsByClass(
+            'video-id2');
+        var ids = [];
+        for (var i = 0; i < videoIds.length; i++)
+        { 
+          ids.push(videoIds[i].textContent);
+          console.log(videoIds[i].textContent);
+        }
+
+        alert('Presentation Button clicked.' + ids);
+      });
+});
 
 var queryInput;
 
@@ -309,16 +339,20 @@ function loadPreviews(query, opt_focusPreviews) {
       {v: 2, alt: 'jsonc', q: query, format: 5},
       function(data) {
         goog.array.forEach(data.data.items, function(item) {
+          //console.log(item.id);
           var thumbnailElement = goog.dom.createDom(
               'img', {src: item.thumbnail.hqDefault, class: 'ajax-thumbnail'});
 
           var titleElement = goog.dom.createDom('div', 'ajax-title');
           goog.dom.setTextContent(titleElement, item.title);
 
+          var videoIdElement = goog.dom.createDom('div', 'video-id');
+          goog.dom.setTextContent(videoIdElement, item.id);
+
           scrollElement.appendChild(goog.dom.createDom(
               'div',
               {class: 'tv-button', data: item.content[5]},
-              [thumbnailElement, titleElement]));
+              [thumbnailElement, titleElement, videoIdElement]));
         });
         tv.ui.decorateChildren(
             previewsContainer.getElement(),
@@ -335,18 +369,29 @@ function loadPreviews(query, opt_focusPreviews) {
 
 function onPreviewDecorate(previewButton) {
   goog.events.listen(previewButton, tv.ui.Button.EventType.ACTION, function() {
-  var scrollElement2 = goog.dom.getElementByClass('tv-container-middle-scroll2');
+  var scrollElement2 = goog.dom.getElementByClass(
+      'tv-container-middle-scroll2');
+  
   var thumbnailElement = goog.dom.createDom(
     'img', {src: previewButton.getElement().childNodes[0].src, class: 'ajax-thumbnail'});
 
   var titleElement = goog.dom.createDom('div', 'ajax-title');
   goog.dom.setTextContent(titleElement, previewButton.getElement().childNodes[1].textContent);
-  
-  // goog.dom.getElementByClass('ajax-player').src = previewButton.getElement().data + '&autoplay=1';
+
+  var videoIdElement = goog.dom.createDom('div', 'video-id2');
+  goog.dom.setTextContent(videoIdElement, previewButton.getElement().childNodes[2].textContent);
+
+ // goog.dom.getElementByClass('ajax-player').src =
+ //   previewButton.getElement().data + '&autoplay=1';
+  //
+  //console.log(goog.dom.getElementsByClass('tv-container-selected-child'));
+  //console.log(previewButton.getElement());
+  //console.log(previewButton.getElement().childNodes[0]);
+  //console.log(scrollElement2);
   scrollElement2.appendChild(goog.dom.createDom(
     'div',
     {class: 'tv-button', data: previewButton.getElement().childNodes[0]},
-      [thumbnailElement, titleElement]));
+    [thumbnailElement, titleElement, videoIdElement]));
   });
 }
 
