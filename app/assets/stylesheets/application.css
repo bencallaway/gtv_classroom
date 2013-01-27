@@ -19,7 +19,24 @@
 .flag-button form input:active{
 	background: black;
 }
+.student-flag{
+	font-size:1000%;
+	text-align: center;
+	margin: 10%;
+	border: .1em #222 solid;
+
+}
+.student-flag h2{
+	color: #222;
+
+}
+.student-flag h1{
+	font-size: 1em;
+	background: #222;
+	color: white;
+}
 .flag-button form input{
+
 	border:none;
 	padding-top:15%;
 	padding-bottom:15%;
@@ -44,6 +61,7 @@
 	font-weight: bold;
 	line-height: 1;
 	position: relative;
+	margin-top: 10%;
 	text-align: center;
 	text-decoration: none;
 	-webkit-transition: background-color 0.15s ease-in-out;

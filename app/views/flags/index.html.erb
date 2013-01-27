@@ -1,3 +1,20 @@
-<div class="student">
-	<%= @count %>
+
+
+<div class="student-flag">
+	<h2 class="subheader">This video received</h2>
+	<h1 id="student-flag"> <%= @count %></h1> 
+	<h2 class="subheader">requests for review.</h2>
 </div>
+
+<script type="text/javascript">
+	
+    window.onload = setupRefresh;
+
+    function setupRefresh() {
+      setTimeout("refreshPage();", 1000); // milliseconds
+    }
+    function refreshPage() {
+       window.location = location.href;
+    }
+
+</script>
