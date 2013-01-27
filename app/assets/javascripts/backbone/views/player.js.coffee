@@ -17,7 +17,17 @@ class gtvc.views.Player extends Backbone.View
    onPlayerReady: (event) =>
      @_deferred.resolve()
 
-  play: (video) ->
+  toggle: (video) ->
     @load.done =>
-      @ytPlayer.loadVideoById video.id
+      if @model.get('id') != video.get('id')
+        @model.set video.toJSON()
+        @ytPlayer.loadVideoById @model.get('id')
+        return
+      if @ytPlayer.getPlayerState() == YT.PlayerState.PLAYING
+        @ytPlayer.pauseVideo()
+      else
+        @ytPlayer.playVideo()
 
+  stop: ->
+    @load.done =>
+      @ytPlayer.stopVideo()

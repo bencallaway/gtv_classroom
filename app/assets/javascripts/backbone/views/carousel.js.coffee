@@ -34,4 +34,3 @@ class gtvc.views.Carousel extends Backbone.View
 
   selectedVideo: ->
     @slides[@selected].model
-

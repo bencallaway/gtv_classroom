@@ -6,6 +6,5 @@ class gtvc.collections.Videos extends Backbone.Collection
 
   parse: (response) ->
     _(response.items).map (item) ->
-      { id: item.id, title: item.snippet.title, description: item.snippet.description, thumbnail: item.snippet.thumbnails.default.url }
-
+      { id: item.id, title: item.snippet.title, description: item.snippet.description, thumbnail: item.snippet.thumbnails.high.url }
 

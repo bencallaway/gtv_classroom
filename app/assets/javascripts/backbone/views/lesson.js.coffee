@@ -18,12 +18,15 @@ class gtvc.views.Lesson extends Backbone.View
     event ||= @context.event
     switch (event.keyCode)
       # Left, Prev
-      when 37, 177 then alert('Left')
+      when 37, 177
+        @carousel.previous()
       # Right, Next
-      when 39, 176 then alert('Right')
+      when 39, 176
+        @carousel.next()
       # Enter, Play/Pause
       when 13, 179
-        @player.play @carousel.selectedVideo()
+        @player.toggle @carousel.selectedVideo()
       # Stop
-      when 178 then alert('Stop')
+      when 178
+        @player.stop()
 
