@@ -6,6 +6,13 @@
 	<h2 class="subheader">requests for review.</h2>
 </div>
 
+<div class="student-poll">
+  <h2 class="subheader redd" id="student-flag"><%= @red_count %></h2> 
+  <h2 class="subheader green" id="student-flag"><%= @green_count %></h2> 
+  <h2 class="subheader blue" id="student-flag"><%= @blue_count %></h2> 
+  <h2 class="subheader yellow" id="student-flag"><%= @yellow_count %></h2>
+</div>
+
 <script type="text/javascript">
 	
     window.onload = setupRefresh;
