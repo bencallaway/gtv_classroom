@@ -33,12 +33,10 @@ coffee:
             when YT.PlayerState.PLAYING, YT.PlayerState.BUFFERING
               carousel.$el.hide()
               modal.$el.hide()
-            when YT.PlayerState.ENDED
+            when YT.PlayerState.PAUSED, YT.PlayerState.ENDED
               $.when( modal.flags.fetch(), modal.answers.fetch() ).then ->
                 modal.render()
                 modal.$el.show()
-            else
-              modal.$el.hide()
               carousel.$el.show()
       lesson = new gtvc.views.Lesson
         el: 'body'
