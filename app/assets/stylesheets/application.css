@@ -12,7 +12,29 @@
  *= require foundation_and_overrides
  *= require_tree .
  */
+.carousel{
+	overflow: hidden;
+	height: 100px;
+	width: 100%;
+	position: fixed;
+	top: 85%;
+	z-index: 2;
+	opacity: .7;
+}
 
+.carousel img{
+	width: 125px;
+	float: left;
+	position: relative;
+	margin: 1px;
+	opacity: .70;
+}
+#player{
+	display: block;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
 .flag-button{
 	width: 100%;
 }
