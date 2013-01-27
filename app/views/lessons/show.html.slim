@@ -6,7 +6,8 @@ coffee:
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
 
   window.onYouTubeIframeAPIReady = =>
-    ids = ['a1Y73sPHKxw'] # , 'u1zgFlCw8Aw', 'kpCJyQ2usJ4', 'HbZjmGQ3Ji8', 'FLGRPYAtReo', 'RSD8PMWS-U8', '71NUxTfGaW8', 'PMeiNnR8gro', 'ZffZvSH285c', '0ciUwIMPDqY']
+    queryKey = parseUri(window.location).queryKey
+    ids = queryKey.video_ids.split(',')
     videos = new gtvc.collections.Videos
     jqxhr = videos.fetch
       dataType: 'jsonp'

@@ -313,8 +313,7 @@ decorateHandler.addClassHandler('presentation-button', function(button) {
           ids.push(videoIds[i].textContent);
           console.log(videoIds[i].textContent);
         }
-
-        alert('Presentation Button clicked.' + ids);
+        window.location = '/lessons/awesomeness?video_ids=' + ids
       });
 });
 
