@@ -4,6 +4,13 @@
  *= require_tree .
  */
 
+$blue: #75aad9;
+$red: #993f3e;
+$yellow: #f6e863;
+$green: #5f8b4f;
+$primary_font: #272727;
+$secondary_font: #6f6f6f;
+
 body {
   height: 100%;
   width: 100%;
@@ -19,22 +26,29 @@ $bottom_margin: 5px;
   background: rgba(255, 255, 255, 0.3);
 	position: fixed;
 	bottom: 0;
+
+  & > div {
+    height: $img_height;
+    width: $img_height;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+
+    img{
+      max-width: none;
+      height: $img_height;
+      display: block;
+      margin: 5px 5px $bottom_margin;
+      opacity: 0.67;
+    }
+
+    &.selected img {
+      border-top: 5px solid $blue;
+      opacity: 1;
+    }
+  }
 }
 
-.carousel > div {
-  height: $img_height;
-  width: $img_height;
-	float: left;
-  overflow: hidden;
-  text-align: center;
-}
-
-.carousel img{
-  max-width: none;
-  height: $img_height;
-  display: block;
-	margin: 5px 5px $bottom_margin;
-}
 
 #player{
 	display: block;
