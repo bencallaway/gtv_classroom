@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 
-gem 'pg'
+
 gem 'jquery-rails'
 
 group :assets do
@@ -18,5 +18,9 @@ end
 
 group :development do
   gem 'debugger'
+  gem 'sqlite3'
+end
+group :production do
+	gem 'pg'
 end
 
