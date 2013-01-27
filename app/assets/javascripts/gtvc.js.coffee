@@ -1,5 +1,5 @@
-window.Gtvclass =
-  Models: {}
-  Collections: {}
-  Routers: {}
-  Views: {}
+window.gtvc =
+  models: {}
+  collections: {}
+  routers: {}
+  views: {}
