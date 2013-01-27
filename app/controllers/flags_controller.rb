@@ -9,7 +9,7 @@ class FlagsController < ApplicationController
 
   def create
     Flag.create
-    flash[:notice] = 'You flagged this video'
+
     redirect_to :action => :new
   end
 

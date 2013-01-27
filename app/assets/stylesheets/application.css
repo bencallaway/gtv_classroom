@@ -12,3 +12,46 @@
  *= require foundation_and_overrides
  *= require_tree .
  */
+
+.flag-button{
+	width: 100%;
+}
+.flag-button form input:active{
+	background: black;
+}
+.flag-button form input{
+	border:none;
+	padding-top:15%;
+	padding-bottom:15%;
+	width:90%;
+	font-size: 4em;
+	border:2px black solid;
+	margin: 5%;
+	-webkit-border-radius: 1000px;
+	-moz-border-radius: 1000px;
+	-ms-border-radius: 1000px;
+	-o-border-radius: 1000px;
+	border-radius: 1000px;
+	background: #2BA6CB;
+	border: 1px solid #1E728C;
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	font-family: inherit;
+	font-weight: bold;
+	line-height: 1;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	-webkit-transition: background-color 0.15s ease-in-out;
+	-moz-transition: background-color 0.15s ease-in-out;
+	-o-transition: background-color 0.15s ease-in-out;
+	transition: background-color 0.15s ease-in-out;
+}
+.notice{
+	border: 0px;
+	padding: 0px;
+}
