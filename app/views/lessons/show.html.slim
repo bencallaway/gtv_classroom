@@ -1,5 +1,3 @@
-#player
-
 coffee:
   ids = ['u1zgFlCw8Aw', 'kpCJyQ2usJ4', 'HbZjmGQ3Ji8', 'FLGRPYAtReo', 'RSD8PMWS-U8', '71NUxTfGaW8', 'PMeiNnR8gro', 'ZffZvSH285c', '0ciUwIMPDqY']
   videos = new gtvc.collections.Videos
@@ -11,10 +9,13 @@ coffee:
       part: 'snippet'
   jqxhr.done (response) =>
     player = new gtvc.views.Player
-      el: '#player'
       context: window
       videoId: videos.first().id
     carousel = new gtvc.views.Carousel
       collection: videos
       itemView: gtvc.views.Thumbnail
-    $('body').append carousel.render().el
+    lesson = new gtvc.views.Lesson
+      el: 'body'
+      player: player
+      carousel: carousel
+    lesson.render()
