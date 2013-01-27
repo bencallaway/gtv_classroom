@@ -12,4 +12,9 @@ class FlagsController < ApplicationController
     flash[:notice] = 'You flagged this video'
     redirect_to :action => :new
   end
+
+  def reset
+    Flag.destroy_all
+    redirect_to :action => :index
+  end
 end
