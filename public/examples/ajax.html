@@ -169,6 +169,18 @@ span.green{ background: #009245!important;}
 span.yellow{ background: #fcee21!important;}
 span.blue{ background: #29abe2!important;}
 
+.key img{
+  max-height: .7em;
+  margin-left:2.5em;
+  line-height: 1em;
+  opacity: .66;
+}
+.key{
+  padding-bottom: 1em;
+}
+.key h3{
+  opacity: .66;
+}
 
 .tv-container-middle-scroll2{
   margin-top: 10%;
@@ -254,15 +266,13 @@ span.blue{ background: #29abe2!important;}
 </div>
 
 <div class="bottom-fixed" 
-        style="display: inline; bottom: 0%; text-align: center; padding-top:.7em; height: 2.5em;" >
-        <span style="margin-right:.5em;" class="color red"></span>
-          <h3 style="font-size: .7em;display:inline; margin-right:2em;"class="subheader tv-button remove-button"> Remove</h3>
-        <span style="margin-right:.5em;" class="color green"></span>
-          <h3 style="font-size: .7em;display:inline; margin-right:2em;"class="subheader tv-button search-button"> Search</h3>
-        <span style="margin-right:.5em;" class="color yellow"></span>
-          <h3 style="font-size: .7em;display:inline; margin-right:2em;"class="subheader tv-button add-button"> Add to Playlist</h3>
-        <span style="margin-right:.5em;" class="color blue"></span>
-          <h3 style="font-size: .7em;display:inline; margin-right:2em;"class="subheader tv-button presentation-button"> Presentation Mode</h3>
+        style="display: inline; bottom: 0%; text-align: center; padding-top:1em; height: 3.5em;" >
+        <div class="key" >
+          <img src="/images/rewind.png" alt=""> <h3 style="font-size: .8em; display:inline; margin-right:2em;"class=" tv-button presentation-button"> Remote</h3>
+          <img src="/images/play.png" alt=""> <h3 style="font-size: .8em; display:inline; margin-right:2em;"class=" tv-button presentation-button"> Presentation Mode</h3>
+          <img src="/images/forward.png" alt=""> <h3 style="font-size: .8em; display:inline; margin-right:2em;"class=" tv-button presentation-button"> Add to Playlist</h3>
+        </div>
+        
       </div>
 <script>
 
@@ -307,6 +317,26 @@ decorateHandler.addClassHandler('presentation-button', function(button) {
         alert('Presentation Button clicked.' + ids);
       });
 });
+
+window.onload = function() {
+ document.onkeydown=function(e){
+    if (!e) e=window.event;
+    switch(e.keyCode) {
+      case 179:
+        var videoIds = goog.dom.getElementsByClass(
+            'video-id2');
+        var ids = [];
+        for (var i = 0; i < videoIds.length; i++)
+        { 
+          ids.push(videoIds[i].textContent);
+          console.log(videoIds[i].textContent);
+        }
+
+        alert('Presentation Button clicked.' + ids);
+        break;
+    }
+  }
+}
 
 var queryInput;
 
