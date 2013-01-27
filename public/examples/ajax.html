@@ -38,9 +38,25 @@
   position: relative;
   width: 480px;
 }
+.ajax-previews2 {
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+
+}
+
+.ajax-previews2 .tv-container-middle-scroll2 {
+  -webkit-transition: left 200ms ease;
+}
+
+.ajax-previews2 .tv-button {
+  vertical-align: top;
+  display: inline-block;
+}
 
 .ajax-query.tv-component-focused {
-  -webkit-box-shadow: 0 0 30px #6391DE, 0 0 15px #F2F2F2, 0 0 5px white;
+  -webkit-box-shadow: 0 0 10px #6391DE;
+  border: 2px solid #6391DE;
 }
 
 .ajax-query .tv-input-hint {
@@ -119,7 +135,9 @@
 }
 
 .tv-button.tv-component-focused .ajax-thumbnail {
-  -webkit-box-shadow: 0 0 20px #6391de, 0 0 7px #f2f2f2, 0 0 2px #FFF;
+   -webkit-box-shadow: 0 0 10px #29abe2;
+  border: 5px solid #29abe2;
+  -webkit-transition: border 200ms ease;
 }
 
 .ajax-title {
@@ -140,6 +158,18 @@ span.red{ background: #c1272d!important;}
 span.green{ background: #009245!important;}
 span.yellow{ background: #fcee21!important;}
 span.blue{ background: #29abe2!important;}
+
+
+.tv-container-middle-scroll2{
+  margin-top: 4em;
+}
+.selected-lesson .ajax-thumbnail{
+  height: 75px;
+  width: 100px;
+}
+.selected-lesson .ajax-title{
+  width: 100px;
+}
 </style>
 
 <script src="bundle.js"></script>
@@ -172,7 +202,7 @@ span.blue{ background: #29abe2!important;}
         Press <b>Enter</b> to start playing selected video.
       </div>
 
-      <iframe class="ajax-player"></iframe>
+      <iframe style="height: 70px;" class="ajax-player"></iframe>
       <div class="ajax-previews tv-container-horizontal">
         <div class="containers-left-slit tv-container-start-slit">
           <div class="containers-slit-top"></div>
@@ -186,6 +216,23 @@ span.blue{ background: #29abe2!important;}
         </div>
         
         <div class="tv-container-middle-scroll"></div>
+      </div>
+      <div class="ajax-previews2 tv-container-horizontal selected-lesson">
+        
+        <div class="containers-left-slit tv-container-start-slit">
+          
+          <div class="containers-slit-top"></div>
+          <div class="containers-slit-middle"></div>
+          <div class="containers-slit-bottom"></div>
+        </div>
+        
+        <div class="containers-right-slit tv-container-end-slit">
+          <div class="containers-slit-top"></div>
+          <div class="containers-slit-middle"></div>
+          <div class="containers-slit-bottom"></div>
+        </div>
+        
+        <div class="tv-container-middle-scroll2"><h4 class="subheader">Lesson Plan</h4></div>
       </div>
     </div>
   </div>
@@ -278,8 +325,18 @@ function loadPreviews(query, opt_focusPreviews) {
 
 function onPreviewDecorate(previewButton) {
   goog.events.listen(previewButton, tv.ui.Button.EventType.ACTION, function() {
-    goog.dom.getElementByClass('ajax-player').src =
-        previewButton.getElement().data + '&autoplay=1';
+  var scrollElement2 = goog.dom.getElementByClass('tv-container-middle-scroll2');
+  var thumbnailElement = goog.dom.createDom(
+    'img', {src: previewButton.getElement().childNodes[0].src, class: 'ajax-thumbnail'});
+
+  var titleElement = goog.dom.createDom('div', 'ajax-title');
+  goog.dom.setTextContent(titleElement, previewButton.getElement().childNodes[1].textContent);
+  
+  // goog.dom.getElementByClass('ajax-player').src = previewButton.getElement().data + '&autoplay=1';
+  scrollElement2.appendChild(goog.dom.createDom(
+    'div',
+    {class: 'tv-button', data: previewButton.getElement().childNodes[0]},
+      [thumbnailElement, titleElement]));
   });
 }
 

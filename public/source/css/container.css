@@ -3,7 +3,8 @@
  */
 
 .tv-container-start-scroll,
-.tv-container-middle-scroll {
+.tv-container-middle-scroll,
+.tv-container-middle-scroll2 {
   position: relative;
 }
 
