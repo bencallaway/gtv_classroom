@@ -1,0 +1,27 @@
+.wrapper.student-view
+	.student
+    .poll-question.text-center.twelve
+      ul#buttons.button-group.even.four-up
+			  / <li><a class="tall color red button"></a></li>
+			  / <li><a class="tall color green button"></a></li>
+			  / <li><a class="tall color yellow button"></a></li>
+			  / <li><a class="tall color blue button"></a></li>
+    .flag-button
+			= button_to 'Review', @flag
+    .ask-question.text-center.row
+			.button.secondary.round.large Ask a Questions
+    hr
+
+coffee:
+  red = new gtvc.models.Answer value: 'red'
+  redButton = new gtvc.views.AnswerButton tagName: 'li', model: red
+  green = new gtvc.models.Answer value: 'green'
+  greenButton = new gtvc.views.AnswerButton tagName: 'li', model: green
+  yellow = new gtvc.models.Answer value: 'yellow'
+  yellowButton = new gtvc.views.AnswerButton tagName: 'li', model: yellow
+  blue = new gtvc.models.Answer value: 'blue'
+  blueButton = new gtvc.views.AnswerButton tagName: 'li', model: blue
+  buttons = [redButton, greenButton, yellowButton, blueButton]
+  _(buttons).invoke 'render'
+  $('#buttons').append _(buttons).pluck('el')
+

@@ -6,9 +6,10 @@ class gtvc.views.Lesson extends Backbone.View
   initialize: ->
     @player = @options.player
     @carousel = @options.carousel
+    @modal = @options.modal
 
   render: ->
-    views = [@player, @carousel]
+    views = [@modal, @player, @carousel]
     @$el.append _(views).pluck('el')
     _(views).invoke('render')
     @

@@ -49,6 +49,14 @@ $bottom_margin: 5px;
   }
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  height: 50%;
+  width: 100%;
+  background-color: white;
+  opacity: 0.67;
+}
 
 #player{
 	display: block;
@@ -60,6 +68,7 @@ $bottom_margin: 5px;
 .flag-button{
 	width: 100%;
 }
+
 .flag-button form input:active{
 	background: black;
 }

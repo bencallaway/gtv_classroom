@@ -15,7 +15,11 @@ coffee:
         id: ids.join()
         part: 'snippet'
     jqxhr.done (response) =>
+      flags = new gtvc.collections.Flags
+      answers = new gtvc.collections.Answers
       modal = new gtvc.views.Modal
+        flags: flags
+        answers: answers
       carousel = new gtvc.views.Carousel
         collection: videos
         itemView: gtvc.views.Thumbnail
@@ -26,14 +30,17 @@ coffee:
           switch event.data
             when YT.PlayerState.PLAYING, YT.PlayerState.BUFFERING
               carousel.$el.hide()
-              modal.$el.hide()
+              # modal.$el.hide()
             when YT.PlayerState.ENDED
-              modal.$el.show()
+              $.when( modal.flags.fetch(), modal.answers.fetch() ).then ->
+                modal.render()
+                modal.$el.show()
             else
-              modal.$el.hide()
+              # modal.$el.hide()
               carousel.$el.show()
       lesson = new gtvc.views.Lesson
         el: 'body'
         player: player
         carousel: carousel
+        modal: modal
       lesson.render()
