@@ -302,19 +302,17 @@ decorateHandler.addClassHandler('add-button', function(button) {
       });
 });
 
+function goToPresentationPage() {
+  var videoIds = goog.dom.getElementsByClass('video-id2');
+  var ids = [];
+  for (var i = 0; i < videoIds.length; i++) { 
+    ids.push(videoIds[i].textContent);
+  }
+  window.location = '/lessons/awesomeness?video_ids=' + ids;
+}
+
 decorateHandler.addClassHandler('presentation-button', function(button) {
-  goog.events.listen(button, tv.ui.Button.EventType.ACTION,
-      function() {
-        var videoIds = goog.dom.getElementsByClass(
-            'video-id2');
-        var ids = [];
-        for (var i = 0; i < videoIds.length; i++)
-        { 
-          ids.push(videoIds[i].textContent);
-          console.log(videoIds[i].textContent);
-        }
-        window.location = '/lessons/awesomeness?video_ids=' + ids
-      });
+  goog.events.listen(button, tv.ui.Button.EventType.ACTION, goToPresentationPage);
 });
 
 window.onload = function() {
@@ -322,16 +320,7 @@ window.onload = function() {
     if (!e) e=window.event;
     switch(e.keyCode) {
       case 179:
-        var videoIds = goog.dom.getElementsByClass(
-            'video-id2');
-        var ids = [];
-        for (var i = 0; i < videoIds.length; i++)
-        { 
-          ids.push(videoIds[i].textContent);
-          console.log(videoIds[i].textContent);
-        }
-
-        alert('Presentation Button clicked.' + ids);
+        goToPresentationPage();
         break;
     }
   }
