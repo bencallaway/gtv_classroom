@@ -18,6 +18,9 @@
     window.onload = updateFlag;
 
     function updateFlag() {
+      $.getJSON('/flags', function(data) {
+        $('#student-flag').html(data.length);
+      });
       $.getJSON('/answers', function(data) {
         var red_count = 0;
         var blue_count = 0;
@@ -37,7 +40,6 @@
             yellow_count++;
           }
         }
-        $('#student-flag').html(data.length);
         $('#student-poll-r').html(red_count);
         $('#student-poll-b').html(blue_count);
         $('#student-poll-g').html(green_count);
