@@ -1,3 +1,8 @@
 == Welcome to Glassroom
 
 This is the Google TV based youtube viewer for classrooms. Made for teachers who use videos in class, but want to receive feedback from students. Glassroom provides a teacher mode and student mode. The teacher mode allows the teacher to set up youtube playlists, show videos, and display student feedback. The teacher mode is meant to be used on the Google TV. The student mode has buttons for the students to anonymously provide the teacher feedback about the video content. The student's view is a responsive web app that can be accessed via cell phones, tablets, and laptops. 
+
+== Where did Glassroom come from?
+
+Glassroom was a product of the Youtube/Google TV Los Angeles Hackathon. Glassroom was created by: Ben Callaway ([github](https://github.com/bencallaway)), Leonard Bogdonoff ([github](https://github.com/lkbgift)), Praveen Moorthy ([website](http://praveenster.com)), Brian Bonus ([email](mailto:bsbonus@gmail.com)), and Ali Baghshomali ([email](mailto:abshomali@gmail.com)).
+
